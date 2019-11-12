@@ -2,8 +2,8 @@
     <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="200"></p>
     
 <p align="center">
-    <h3>Laravel Fork to request POST and Limit requests per time</h3>
-    <h4>Project required by Incfile</h4>
+    <h4>Laravel Fork to request POST and Limit requests per time</h4>
+    <h5>Project required by Incfile</h5>
 </p>    
     
 
@@ -20,11 +20,15 @@ Secure request are managed by Attempts and Limit/Timers.
 - Multiple Errors Exception and validations.
 - Real-time events and Log files.
 
-<p align="center">
-    <h3>Steps for Project</h3>
-</p> 
-### Steps for Project
+<hl>
 
+<p align="center">
+    <h2>Steps for Project</h2>
+</p> 
+
+<hl>
+    
+    
 ## Fork Laravel
 
 After Fork Laravel repository, I redefined the origin remote to be associated and be able to push changes to my own fork.
