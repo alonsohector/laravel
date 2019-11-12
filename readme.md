@@ -100,11 +100,24 @@ Created new exception and handle error, if environment is production don’t sho
     php artisan make:exception PostNotFoundException
 </pre>
 
+Review of the environment 
+```
+try{
+    ...POST
+} catch (\Exception $e) {
+    \Log::error("Incfile---l--".$e);
+    if(env('APP_ENV')!='production')
+        return back()->withError($e->getMessage())->withInput();
+}
+```
 ## Limiter configurations
 
 The **RateLimiter** uses a cache store to put two things: 
+
     - A **key** that holds the number attempts, and another key which holds the window of time to register new attempts. 
+    
     - The latter just appends **timer** to the original key.
+    
     
 Limit Attempts and Time aims to provide POST request protection and can be modified as the implementation is required.
 
@@ -132,7 +145,7 @@ $this->table($header, $info);
 when it is needed to increase values in Limiter
 
 ```
-//charge attempt becaus POST was sent bad or error
+//charge attempt 
 $limiter->hit($key, ((int)env('POST_LIMITER_SECONDS')));
 ```
 The methods:
