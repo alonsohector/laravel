@@ -13,4 +13,4 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('throttle:'.env('POST_LIMITER_RETRIES'));
