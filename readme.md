@@ -13,12 +13,13 @@ Laravel POST Attempts/timer, limits the request number stopping retries and inte
 I use RateLimiter and get the APP_KEY retrieved during installation, it is normal to use UserId, CompanyId, Projetc, etc.
 
 It is very critical that the request reaches the destination and handle errors.
-Secure request are managed by Attempts and Limit/Timers.
+Secure request are managed by Limits and Quotas with RateLimiter in a combination using throttle and middleware, that let us custom actions.
 
 - Simple, fast POST request with [Guzzle](https://github.com/guzzle/guzzle).
 - Command Artisan using parameters.
 - Multiple Errors Exception and validations.
 - Real-time events and Log files.
+- Application Cache to save the limit data.
 
 <hl>
 
