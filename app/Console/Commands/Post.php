@@ -70,10 +70,10 @@ class Post extends Command
         echo "\n";
         $key = env('APP_KEY');
 
-        $header = ["Attemps", "Retries Left", 'Available time (Sec)'];
+        $header = ["Attempts", "Retries Left", 'Available time (Sec)'];
         $info  = [
             [
-                "attemps"=>(string) ($limiter->attempts($key)+1)
+                "attempts"=>(string) ($limiter->attempts($key)+1)
             ,
                 "retries_left" => (string) ($limiter->retriesLeft($key, 3)<0)?0:$limiter->retriesLeft($key, env('POST_LIMITER_RETRIES'))    
             ,
