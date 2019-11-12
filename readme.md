@@ -100,6 +100,47 @@ Created new exception and handle error, if environment is production don’t sho
     php artisan make:exception PostNotFoundException
 </pre>
 
+## Limiter configurations
+
+The **RateLimiter** uses a cache store to put two things: 
+    - A **key** that holds the number attempts, and another key which holds the window of time to register new attempts. 
+    - The latter just appends **timer** to the original key.
+    
+Limit Attempts and Time aims to provide POST request protection and can be modified as the implementation is required.
+
+```
+//Init limiter
+$limiter = app(RateLimiter::class);
+
+//Get Key App
+$key = env('APP_KEY');
+
+$header = ["Attempts", "Retries Left", 'Available time (Sec)'];
+//Calculate values to show in table
+$info  = [
+    [
+      "attempts"=>(string) ($limiter->attempts($key)+1)
+    ,
+      "retries_left" => (string) ($limiter->retriesLeft($key, 3)<0)?0:$limiter->retriesLeft($key, env('POST_LIMITER_RETRIES'))    
+    ,
+      "available_time" => (string) ($limiter->availableIn($key)<0)?((int)env('POST_LIMITER_SECONDS')):($limiter->availableIn($key))
+    ],
+];
+//show table
+$this->table($header, $info);
+```
+when it is needed to increase values in Limiter
+
+```
+//charge attempt becaus POST was sent bad or error
+$limiter->hit($key, ((int)env('POST_LIMITER_SECONDS')));
+```
+The methods:
+
+- attempts():     Shows you how many attempts the user has been done.
+- retriesLeft():  The number of retries left.
+- availableIn():  How much time must pass to retry.
+
 
 ## Finished
 
